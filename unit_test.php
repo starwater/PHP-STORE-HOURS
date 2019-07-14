@@ -86,3 +86,41 @@ $days = 1;
 $preparation_minutes = 10;
 
 getAvailableTimeSlots($open_hours, $time_zone, $range=30, $interval=15, $days=4, $preparation_minutes=10);
+
+//ALL CLOSED
+$open_hours = '{"ALL":"CLOSED"}';
+$time_zone = '7:05pm';
+$range = 30;
+$interval = 15;
+$days = 1;
+$preparation_minutes = 10;
+getAvailableTimeSlots($open_hours, $time_zone, $range=30, $interval=15, $days=4, $preparation_minutes=10);
+
+//ALL CLOSED
+$open_hours = '{"ALL":"-1"}';
+$time_zone = '7:05pm';
+$range = 30;
+$interval = 15;
+$days = 1;
+$preparation_minutes = 10;
+getAvailableTimeSlots($open_hours, $time_zone, $range=30, $interval=15, $days=4, $preparation_minutes=10);
+
+
+//ALL OPEN
+$open_hours = '{"ALL":"ALL"}';
+$time_zone = '7:05pm';
+$range = 30;
+$interval = 15;
+$days = 1;
+$preparation_minutes = 10;
+getAvailableTimeSlots($open_hours, $time_zone, $range=30, $interval=15, $days=4, $preparation_minutes=10);
+
+
+//ALL in certain times -- cross day
+$open_hours = '{"ALL":"23:00-2:30"}';
+$time_zone = '7:05pm';
+$range = 30;
+$interval = 15;
+$days = 1;
+$preparation_minutes = 10;
+getAvailableTimeSlots($open_hours, $time_zone, $range=30, $interval=15, $days=4, $preparation_minutes=10);

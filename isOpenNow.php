@@ -11,7 +11,9 @@ function isOpenNow($open_hours, $time_zone)
     $today = strtoupper($today);
     //$open_hours = json_decode($open_hours);
     reset($open_hours);
-    while(key($open_hours)!=$today) {next($open_hours);}
+    if(key($open_hours)!='ALL'){
+        while(key($open_hours)!=$today) {next($open_hours);}
+    }
 //    print('todays day: '.$today."   openhours:".key($open_hours)."  hours:".current($open_hours).PHP_EOL);
     if(current($open_hours) == "CLOSED" | current($open_hours) == -1)
     {

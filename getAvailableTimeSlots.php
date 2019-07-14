@@ -1,14 +1,16 @@
 <?php
 include 'isOpenNow.php';
 
-//$open_hours = '{"MON":"CLOSED","TUE":"09:00-17:00","WED":"09:00-17:00,19:00-3:00","THU":"09:00-17:00","FRI":"09:00-17:00,22:00-03:00","SAT":"9:00-13:00","SUN":"20:00-2:30"}';
-//$time_zone = '11:05pm';
-//$range = 30;
-//$interval = 15;
-//$days = 5;
-//$preparation_minutes = 20;
+$open_hours = '{"MON":"CLOSED","TUE":"ALL","WED":"09:00-17:00,19:00-3:00","THU":"09:00-17:00","FRI":"09:00-17:00,22:00-03:00","SAT":"9:00-13:00","SUN":"20:00-2:30"}';
+$open_hours2 = '{"ALL":"ALL"}';
+$open_hours3 = '{"ALL":"23:00-2:30"}';
+$time_zone = '11:05pm';
+$range = 30;
+$interval = 15;
+$days = 5;
+$preparation_minutes = 20;
 
-//getAvailableTimeSlots($open_hours,$time_zone,$range,$interval,$days,$preparation_minutes);
+getAvailableTimeSlots($open_hours3,$time_zone,$range,$interval,$days,$preparation_minutes);
 
 function getAvailableTimeSlots($open_hours, $time_zone, $range, $interval, $days, $preparation_minutes=10)
 {
@@ -21,7 +23,12 @@ function getAvailableTimeSlots($open_hours, $time_zone, $range, $interval, $days
     $todays_day = date('D'); $todays_day = strtoupper($todays_day); //get todays day
     $open_hours = json_decode($open_hours);
     reset($open_hours);
-    while (key($open_hours) != $todays_day) { next($open_hours); } //loop to todays day
+
+    //
+    if(key($open_hours)!='ALL'){
+        while ((key($open_hours) != $todays_day)){ next($open_hours); } //loop to todays day
+    }
+    //
     $open = isOpenNow($open_hours, $time_zone); // determine the start time, time_zone + preparation time , then round
 //    $time = current($open_hours);
     // today
@@ -53,8 +60,9 @@ function getAvailableTimeSlots($open_hours, $time_zone, $range, $interval, $days
 
     if(key($open_hours)=='SUN'){
         reset($open_hours);
-    } else{
+    } else if(key($open_hours)!='ALL'){
         next($open_hours);
+    }else{
     }
     for($i=0; $i<$days-1; $i++)
     {
@@ -65,7 +73,12 @@ function getAvailableTimeSlots($open_hours, $time_zone, $range, $interval, $days
             $time_arr = array_merge($time_arr,$arr);
         }
         $todays_date = date('y-m-d', strtotime($todays_date. "+1 days"));
-        next($open_hours);
+        if(key($open_hours)=='SUN'){
+            reset($open_hours);
+        } else if(key($open_hours)!='ALL'){
+            next($open_hours);
+        }else{
+        }
     }
     $time_arr = json_encode($time_arr);
     print($time_arr);
@@ -126,7 +139,9 @@ function time_table($start, $end, $range, $interval)
 
 
 function table_helper($open_hours, $range, $interval, $key){
-    while (key($open_hours) != $key) { next($open_hours); }
+    if(key($open_hours)!='ALL'){
+        while ((key($open_hours) != $key)){ next($open_hours); } //loop to todays day
+    }
     print(key($open_hours).PHP_EOL.$key.PHP_EOL);
     $arr = [];
     if(strpos(current($open_hours),',')){
@@ -159,7 +174,9 @@ function table_helper($open_hours, $range, $interval, $key){
 
 
 function table_helper_11($open_hours, $range, $interval, $key, $start){
-    while (key($open_hours) != $key) { next($open_hours); }
+    if(key($open_hours)!='ALL'){
+        while ((key($open_hours) != $key)){ next($open_hours); } //loop to todays day
+    }
     print(key($open_hours).PHP_EOL.$key.PHP_EOL);
     $arr = [];
     if(strpos(current($open_hours),',')){
@@ -192,7 +209,9 @@ function table_helper_11($open_hours, $range, $interval, $key, $start){
 }
 
 function table_helper_12($open_hours, $range, $interval, $key, $start){
-    while (key($open_hours) != $key) { next($open_hours); }
+    if(key($open_hours)!='ALL'){
+        while ((key($open_hours) != $key)){ next($open_hours); } //loop to todays day
+    }
     print(key($open_hours).PHP_EOL.$key.PHP_EOL);
     $arr = [];
     if(strpos(current($open_hours),',')){
@@ -221,7 +240,9 @@ function table_helper_12($open_hours, $range, $interval, $key, $start){
 
 // p1 open soon
 function table_helper_13($open_hours, $range, $interval, $key){
-    while (key($open_hours) != $key) { next($open_hours); }
+    if(key($open_hours)!='ALL'){
+        while ((key($open_hours) != $key)){ next($open_hours); } //loop to todays day
+    }
     print(key($open_hours).PHP_EOL.$key.PHP_EOL);
     $arr = [];
     if(strpos(current($open_hours),',')){
@@ -255,7 +276,9 @@ function table_helper_13($open_hours, $range, $interval, $key){
 
 //open soon p2
 function table_helper_14($open_hours, $range, $interval, $key){
-    while (key($open_hours) != $key) { next($open_hours); }
+    if(key($open_hours)!='ALL'){
+        while ((key($open_hours) != $key)){ next($open_hours); } //loop to todays day
+    }
     print(key($open_hours).PHP_EOL.$key.PHP_EOL);
     $arr=[];
     if(strpos(current($open_hours),',')){
