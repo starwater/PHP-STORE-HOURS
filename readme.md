@@ -1,4 +1,6 @@
-#PHP for store opening hours:
+#PHP for store opening hours:  
+--------------------------------
+Jul 14: update for "ALL" hours
 --------------------------------
 The code still need a lot to work on code optimization, feel free to let me know. Tried to use strtotime but the result turns out to be unpredictable due to different time zones.  
 Note: When interval at 30, time will only show to 11:30 pm, this is relate to the rounding method used. (round to nearest 15min)  

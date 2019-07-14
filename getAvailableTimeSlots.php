@@ -1,16 +1,16 @@
 <?php
 include 'isOpenNow.php';
-
-$open_hours = '{"MON":"CLOSED","TUE":"ALL","WED":"09:00-17:00,19:00-3:00","THU":"09:00-17:00","FRI":"09:00-17:00,22:00-03:00","SAT":"9:00-13:00","SUN":"20:00-2:30"}';
-$open_hours2 = '{"ALL":"ALL"}';
-$open_hours3 = '{"ALL":"23:00-2:30"}';
-$time_zone = '11:05pm';
-$range = 30;
-$interval = 15;
-$days = 5;
-$preparation_minutes = 20;
-
-getAvailableTimeSlots($open_hours3,$time_zone,$range,$interval,$days,$preparation_minutes);
+// These are for testing purpose
+//$open_hours = '{"MON":"CLOSED","TUE":"ALL","WED":"09:00-17:00,19:00-3:00","THU":"09:00-17:00","FRI":"09:00-17:00,22:00-03:00","SAT":"9:00-13:00","SUN":"20:00-2:30"}';
+//$open_hours2 = '{"ALL":"ALL"}';
+//$open_hours3 = '{"ALL":"23:00-2:30"}';
+//$time_zone = '11:05pm';
+//$range = 30;
+//$interval = 15;
+//$days = 5;
+//$preparation_minutes = 20;
+//
+//getAvailableTimeSlots($open_hours3,$time_zone,$range,$interval,$days,$preparation_minutes);
 
 function getAvailableTimeSlots($open_hours, $time_zone, $range, $interval, $days, $preparation_minutes=10)
 {
